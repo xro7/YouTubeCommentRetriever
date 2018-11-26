@@ -85,8 +85,8 @@ class YouTubeRetriever:
         while 'nextPageToken' in response:
             try:
                 response = self.API_connection.commentThreads().list(
-                    part='snippet,replies', videoId=video_id, maxResults=100,
-                    order=order, textFormat='plainText', searchTerms=search_term, pageToken=response['nextPageToken']).execute()
+                    part='snippet,replies', videoId=video_id, maxResults=100, order=order, textFormat='plainText',
+                    searchTerms=search_term, pageToken=response['nextPageToken']).execute()
             except HttpError as e:
                 print(e, video_id)
                 break
@@ -147,8 +147,8 @@ class YouTubeRetriever:
                         order=order, search_term=term, return_ids_dict=True))
                 concated_comments_dict = dict()
                 for d in comment_dicts:
+                    # print(d)
                     concated_comments_dict.update(d)
-                    print(len(d))
                 comments[video_id] = concated_comments_dict.values()
 
             if verbose:
